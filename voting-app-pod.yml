@@ -1,0 +1,18 @@
+# the main backend API app written in Python which will process votes
+# exposes port 80
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: voting-app-pod
+  labels:
+    name: voting-app-pod
+    app: demo-voting-app
+  namespace: voting
+
+spec:
+  containers:
+    - name: voting-app
+      image: dockersamples/examplevotingapp_vote
+      ports:
+        - containerPort: 80

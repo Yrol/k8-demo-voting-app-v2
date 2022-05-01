@@ -1,0 +1,20 @@
+# Redis service (Internal srvice. i.e. ClusterIP)
+# Port 6379 (both source port and targetPort - meaning listen to port 6379 and forward that to port 6379)
+# "name" in metadata section ("redis") is the name that is being reference in the app (ex: the worker app). This should match
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  labels:
+    name: redis-service
+    app: demo-voting-app
+  namespace: voting
+
+spec:
+  ports:
+    - port: 6379
+      targetPort: 6379
+  selector:
+    name: redis-pod
+    app: demo-voting-app

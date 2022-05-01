@@ -1,0 +1,21 @@
+# Service for frontend Results app
+# Using the type LoadBalancer since available outside the cluster network (via port 80)
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: results-service
+  labels:
+    name: results-service
+    app: demo-voting-app
+  namespace: voting
+
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    name: results-app-pod
+    app: demo-voting-app
+
